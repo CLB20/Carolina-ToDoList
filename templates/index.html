@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <section class="vh-100" style="background: url(https://images.unsplash.com/photo-1510784722466-f2aa9c52fff6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80) center center fixed">
+    <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-10">
+        <div class="card" style="border-radius: 15px; opacity: 0.9">
+          <div class="card-body p-5">
+            {% if current_user.is_authenticated: %}
+              <h6 class="mb-5 text-center">Welcome Back {{ current_user.name }}! </h6>
+              <div class="d-flex justify-content-center align-items-center mb-4">
+                  <a class="btn btn-primary mx-5" href="{{ url_for('lists') }}">Lists</a>
+                  <a class="btn btn-primary mx-5" href="{{ url_for('logout') }}">Sign Out</a>
+              </div>
+            {% else %}
+              <h6 class="mb-5 text-center p-5">Create your own To Do List!</h6>
+              <div class="d-flex justify-content-center align-items-center mb-4">
+                <a class="btn btn-primary mx-5" href="{{ url_for('register') }}">Register</a>
+                <a class="btn btn-primary mx-5" href="{{ url_for('login') }}">Sign In</a>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

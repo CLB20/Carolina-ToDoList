@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+  <section class="vh-100" style="background:url(https://images.unsplash.com/reserve/HgZuGu3gSD6db21T3lxm_San%20Zenone.jpg?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80) repeat center center fixed">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-10">
+        <div class="card" style="border-radius: 15px; opacity: 0.9">
+          <div class="card-body p-5">
+              <h6 class="mb-5 text-center">{{ title }}</h6>
+
+              <div class="d-flex justify-content-center align-items-center mb-4">
+                <div class="form-outline flex-fill">
+                    <div class="row">
+                      <div class="col-lg-8 col-md-10 mx-auto content">
+                        {% with messages = get_flashed_messages() %}
+                          {% if messages %}
+                              {% for message in messages: %}
+                                  <p>{{ message }}</p>
+                              {% endfor %}
+                          {% endif %}
+                        {% endwith %}
+                        {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+                      </div>
+                    </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
