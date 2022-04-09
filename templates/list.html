@@ -9,7 +9,7 @@
         <div class="card" style="border-radius: 15px; opacity: 0.9">
           <div class="card-body p-5">
             <div class="card" style="border-radius: 15px;">
-              <div class="card-body p-5">
+              <div class="card-body">
                 <h6 class="mb-5 text-center">{{ title }}</h6>
                 <hr>
                 <div class="d-flex justify-content-center align-items-center mb-4">
@@ -31,7 +31,7 @@
                     <li class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-bottom mb-2">
                       <div class="d-flex align-items-center">
                         <a href="{{ url_for('delete_task', task_id=task.id) }}" data-mdb-toggle="tooltip" title="Edit task">
-                          <i class="fa fa-check-square text-secondary"></i>
+                          <i class="fa fa-check-square text-secondary" style="margin-right:10px"></i>
                         </a>
                         <p>{{ task.task }}</p>
                       </div>
