@@ -1,4 +1,5 @@
 import itsdangerous
+import os
 from flask import Flask, render_template, redirect, url_for, flash
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from flask_sqlalchemy import SQLAlchemy
@@ -7,11 +8,11 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from forms import RegisterForm, LoginForm, ListForm, TaskForm
 
 app = Flask(__name__)
-app.config["SECRET_KEY"] = "Estamosamenoscuarentaycontando"
+app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 Bootstrap(app)
 
 # Connect to DB
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///todo.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
