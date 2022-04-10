@@ -10,8 +10,8 @@
             {% if current_user.is_authenticated: %}
             {% for user in users: %}
               <div class="d-flex justify-content-center align-items-center mb-4">
-                  <p>user.name</p>
-                <p>user.email</p>
+                <p>{{ user.name }}</p>
+                <p>{{ user.email }}</p>
               </div>
             {% endfor %}
             {% endif %}
