@@ -1,11 +1,12 @@
 import itsdangerous
 import os
-from flask import Flask, render_template, redirect, url_for, flash
+from flask import Flask, render_template, redirect, url_for, flash, abort
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
 from werkzeug.security import generate_password_hash, check_password_hash
 from forms import RegisterForm, LoginForm, ListForm, TaskForm
+from functools import wraps
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
@@ -23,6 +24,16 @@ login_manager.init_app(app)
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
+
+def admin_only(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if current_user.id != 1:
+            return abort(403)
+        return f(*args, **kwargs)
+
+    return decorated_function
 
 
 # Configure tables
@@ -186,6 +197,13 @@ def edit_task(task_id):
         return render_template("list.html", form=form, tasks=tasks, title=list_name)
 
     return redirect(url_for("home"))
+
+
+@app.route("/secret")
+@admin_only
+def secret():
+    users = User.query.all()
+    return render_template("user.html", users=users)
 
 
 if __name__ == "__main__":
