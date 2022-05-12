@@ -13,6 +13,8 @@
                 <p>{{ user.name }}</p>
                 <hr>
                 <p>{{ user.email }}</p>
+                <hr>
+                <p><button class="btn"><a href="{{  url_for('secret/delete_user', id=user.id) }}">Delete</a></button></p>
               </div>
             {% endfor %}
             {% endif %}
