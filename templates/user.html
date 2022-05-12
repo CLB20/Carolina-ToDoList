@@ -21,5 +21,47 @@
       </div>
     </div>
   </div>
+    <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-10">
+        <div class="card" style="border-radius: 15px; opacity: 0.9">
+          <div class="card-body p-5">
+            {% if current_user.is_authenticated: %}
+            {% for list in lists: %}
+              <div class="d-flex justify-content-center align-items-center mb-4">
+                <p>List Name: {{ list.list_name }}</p>
+                <hr>
+                <p>User ID: {{ list.user_id }}</p>
+                 <hr>
+                <p>Tasks: {{ list.tasks }}</p>
+              </div>
+            {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+      <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-10">
+        <div class="card" style="border-radius: 15px; opacity: 0.9">
+          <div class="card-body p-5">
+            {% if current_user.is_authenticated: %}
+            {% for t in tasks: %}
+              <div class="d-flex justify-content-center align-items-center mb-4">
+                <p>Task: {{ t.task }}</p>
+                <hr>
+                <p>List ID: {{ t.list_id }}</p>
+                 <hr>
+                <p>User ID: {{ t.user_id }}</p>
+              </div>
+            {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 {% endblock %}
