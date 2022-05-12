@@ -203,8 +203,17 @@ def edit_task(task_id):
 @admin_only
 def secret():
     users = User.query.all()
-    return render_template("user.html", users=users)
+    lists = List.query.all()
+    tasks = Task.query.all()
+    return render_template("user.html", users=users, lists=lists, tasks=tasks)
 
+@app.route("/secret/delete_user/<int:id>")
+@admin_only
+def delete_user(id):
+    user_to_delete = User.query.get(id)
+    db.session.delete(user_to_delete)
+    db.session.commit()
+    return redirect(url_for("secret"))
 
 if __name__ == "__main__":
     app.run(debug=True)
